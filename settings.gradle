@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "CommonLib"
 include ':app'
-include ':common-lib'
+include ':common-libs'
