@@ -1,7 +1,8 @@
 package com.baize.common_lib.utils;
 
-import com.ocamara.common_libs.bridge.AppInterface;
-import com.ocamara.common_libs.bridge.BridgeCore;
+
+import com.baize.common_lib.bridge.AppInterface;
+import com.baize.common_lib.bridge.BridgeCore;
 
 public class TimeUtil {
     public static long getServerTimeL() {

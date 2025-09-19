@@ -2,14 +2,12 @@ package com.baize.common_lib.utils;
 
 import android.util.Log;
 
-import com.ocamara.common_libs.BuildConfig;
-
 /**
  * 日志打印统一使用此工具类
  * TODO 統一項目中日志打印
  */
 public class LogUtil {
-    private static boolean isShowLog = BuildConfig.DEBUG;
+    private static boolean isShowLog = true;
     public static boolean isShowErrLog = true;
 
     public static void toggleLogEnable() {

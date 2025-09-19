@@ -3,6 +3,9 @@ plugins {
     alias(libs.plugins.kotlin.android)
 }
 
+group = 'com.github.Mr-Zheng-yz'
+version = '1.0.2'
+
 android {
     namespace 'com.baize.common_lib'
     compileSdk 34
