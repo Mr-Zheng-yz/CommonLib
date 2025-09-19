@@ -1,10 +1,8 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    id 'maven-publish'
 }
-
-group = 'com.github.Mr-Zheng-yz'
-version = '1.0.2'
 
 android {
     namespace 'com.baize.common_lib'
@@ -29,6 +27,19 @@ android {
     }
     kotlinOptions {
         jvmTarget = '11'
+    }
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.Mr-Zheng-yz'
+                artifactId = 'release'
+                version = '1.0.3'
+            }
+        }
     }
 }
 
