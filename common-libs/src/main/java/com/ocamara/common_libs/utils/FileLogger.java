@@ -42,21 +42,23 @@ public class FileLogger {
     private FileLogger() {}
 
     public void init(Context context) {
-        cleanOldLogs(context); // 清理旧日志
+        //cleanOldLogs(context); // 清理旧日志
         startWriteThread(context); // 启动写入线程
     }
 
-    private void cleanOldLogs(Context context) {
+    public void cleanOldLogs(Context context) {
         File logDir = ensureLogDir(context);
         if (!logDir.exists()) return;
         long cutoffTime = getCurrentTimeMillis() - MAX_LOG_DAYS * 24 * 3600 * 1000L;
         Log.d(TAG, "--旧日志截止时间:" + cutoffTime);
+        log("--清理旧日志，截止时间:" + cutoffTime);
         File[] files = logDir.listFiles();
         if (files != null) {
             for (File file : files) {
                 if (file.lastModified() < cutoffTime) {
                     boolean result = file.delete();
                     Log.d(TAG, "--删除旧日志文件:" + file.getName() + " 结果:" + result);
+                    log("--删除旧日志文件:" + file.getName() + " 结果:" + result);
                 }
             }
         }
