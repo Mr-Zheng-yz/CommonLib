@@ -8,7 +8,9 @@ import android.util.Log;
  */
 public class LogUtil {
     private static boolean isShowLog = true;
-    public static boolean isShowErrLog = true;
+    public static boolean isShowErrLog = true;  //错误日志
+    public static boolean httpLogEnable = false;  //是否写入网络请求日志
+    public static boolean isShowDebugLog = false;  //调试日志
 
     public static void toggleLogEnable() {
         isShowLog = !isShowLog;
@@ -19,7 +21,25 @@ public class LogUtil {
         }
     }
 
-    public static final String TAG = "CommonLogUtil";
+    public static void toggleHttpLogEnable(boolean enable) {
+        httpLogEnable = enable;
+        if (httpLogEnable) {
+            LogUtil.wi("------网络日志开启写入!");
+        } else {
+            LogUtil.wi("------网络日志已经关闭.");
+        }
+    }
+
+    public static void toggleDebugLogEnable(boolean enable) {
+        isShowDebugLog = enable;
+        if (isShowDebugLog) {
+            LogUtil.wi("------Debug日志开启写入!");
+        } else {
+            LogUtil.wi("------Debug日志已经关闭.");
+        }
+    }
+
+    public static final String TAG = "CommonLog";
 
     public static void d(String msg) {
         i(null, msg);
@@ -80,6 +100,28 @@ public class LogUtil {
             FileLogger.write(tag + "： —— " + msg);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void di(String suffix, String msg) {
+        if (isShowDebugLog) {
+            String tag = TAG + (suffix == null ? "" : "_" + suffix);
+            Log.i(tag, msg);
+            try {
+                FileLogger.write(tag + "： —— " + msg);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void http(String msg) {
+        String tag = TAG + "_HTTP";
+        if (isShowLog) {
+            Log.i(tag, msg);
+        }
+        if (httpLogEnable) {
+            FileLogger.write(tag + "： —— " + msg);
         }
     }
 }
