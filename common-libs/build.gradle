@@ -1,8 +1,22 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    id 'maven-publish'
+    alias(libs.plugins.maven.publish)
 }
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.Mr-Zheng-yz'
+                artifactId = 'common-libs'
+                version = libs.versions.versionName.get()
+            }
+        }
+    }
+}
+
 
 android {
     namespace 'com.ocamara.common_libs'
@@ -28,27 +42,17 @@ android {
     kotlinOptions {
         jvmTarget = '11'
     }
-}
-
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-                from components.release
-                groupId = 'com.github.Mr-Zheng-yz'
-                artifactId = 'release'
-                version = '1.0'
-            }
-        }
+    viewBinding {
+        enable = true
     }
 }
 
 dependencies {
-
-//    implementation libs.androidx.core.ktx
-//    implementation libs.androidx.appcompat
-//    implementation libs.material
-//    testImplementation libs.junit
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
 //    androidTestImplementation libs.androidx.junit
 //    androidTestImplementation libs.androidx.espresso.core
 }
