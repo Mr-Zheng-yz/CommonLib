@@ -8,6 +8,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.baize.common_lib.databinding.FragmentDashboardBinding
+import com.ocamara.common_libs.utils.FileLogger
+import com.ocamara.common_libs.utils.LogUtil
 
 class DashboardFragment : Fragment() {
 
@@ -28,9 +30,23 @@ class DashboardFragment : Fragment() {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+
+        binding.btnCInitLog.setOnClickListener {
+            FileLogger.getInstance().init(context)
+        }
+
+        binding.btnCLearLog.setOnClickListener {
+            FileLogger.getInstance().cleanOldLogs(context)
+        }
+
+        binding.btnLog.setOnClickListener {
+            repeat(10) {
+                Thread {
+                    repeat(10) { count ->
+                        LogUtil.wi(">>>>>>>>>>>>>>>>>>>>>>>> 日志测试写入 count:" + count + "${Thread.currentThread().name} <<<<<<<<<<<<<<<<<<<<<")
+                    }
+                }.start()
+            }
         }
         return root
     }

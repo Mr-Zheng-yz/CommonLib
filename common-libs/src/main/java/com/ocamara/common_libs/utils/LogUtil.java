@@ -4,7 +4,6 @@ import android.util.Log;
 
 /**
  * 日志打印统一使用此工具类
- * TODO 統一項目中日志打印
  */
 public class LogUtil {
     private static boolean isShowLog = true;
