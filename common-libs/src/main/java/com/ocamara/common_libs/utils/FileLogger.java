@@ -69,6 +69,12 @@ public class FileLogger {
                 long lastTime = TimeUtil.stringToTimestamp(strDate, "yyyyMMdd-HHmmss");
                 Log.d(TAG, "---- name:" + name + " -> " + strDate + " ->> " + lastTime);
                 if (lastTime > 0 && lastTime < cutoffTime) {
+                    // 跳过当前正在写入的日志文件，避免日志写入丢失
+                    if (currentLogFile != null && file.getAbsolutePath().equals(currentLogFile.getAbsolutePath())) {
+                        Log.d(TAG, "--跳过当前日志文件，不删除:" + file.getName());
+                        log("--跳过当前日志文件，不删除:" + file.getName());
+                        continue;
+                    }
                     boolean result = file.delete();
                     Log.d(TAG, "--删除旧日志文件:" + file.getName() + " 结果:" + result);
                     log("--删除旧日志文件:" + file.getName() + " 结果:" + result);
@@ -105,9 +111,12 @@ public class FileLogger {
 
     private void checkAndRotateFile(Context context) throws IOException {
         File logDir = ensureLogDir(context);
-        if (currentLogFile == null || currentLogFile.length() > MAX_LOG_SIZE) {
+        if (currentLogFile == null || !currentLogFile.exists() || currentLogFile.length() > MAX_LOG_SIZE) {
             if (writer != null) {
                 writer.close();
+            }
+            if (currentLogFile != null && !currentLogFile.exists()) {
+                Log.w(TAG, "++当前日志文件已被删除，重新创建: " + currentLogFile.getName());
             }
             String date = new SimpleDateFormat("yyyyMMdd-HHmmss").format(getCurrentTimeMillis());
             currentLogFile = new File(logDir, "log_" + date + ".txt");

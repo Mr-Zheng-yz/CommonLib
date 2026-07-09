@@ -10,8 +10,17 @@ import android.view.View;
 public abstract class DelayTapClickListener implements View.OnTouchListener {
     private static final String TAG = "DelayTapClickListener";
     private static final long INTERVAL_TIME = 70;
+    private long down_up_interval;
     private long lastClickTimeDown;
     private String downLocation;
+
+    public DelayTapClickListener() {
+        this(INTERVAL_TIME);
+    }
+
+    public DelayTapClickListener(long down_up_interval) {
+        this.down_up_interval = down_up_interval;
+    }
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
@@ -23,7 +32,7 @@ public abstract class DelayTapClickListener implements View.OnTouchListener {
         } else if (event.getActionMasked() == MotionEvent.ACTION_UP) {
             long interval = System.currentTimeMillis() - lastClickTimeDown;
             Log.d(TAG, "抬起:" + " 间隔:" + interval);
-            if (interval >= INTERVAL_TIME) {
+            if (interval >= down_up_interval) {
                 LogUtil.e(TAG, "-点击抬起时间间隔:" + interval + " 触发点击，位置：" + event.getRawX() + " " + event.getRawY() + " 按下：" + downLocation);
                 onClick(v);
             } else {
