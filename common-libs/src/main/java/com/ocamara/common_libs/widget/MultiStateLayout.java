@@ -76,7 +76,7 @@ public class MultiStateLayout extends FrameLayout {
     public void showEmpty(String text, int imgRes) {
         if (emptyView == null) {
             emptyView = inflateLayout(emptyLayoutId);
-            setupRetryButton(emptyView, 1);
+            setupRetryButton(emptyView);
             addView(emptyView);
         }
         ImageView iv = emptyView.findViewById(R.id.ivEmpty);
@@ -101,7 +101,7 @@ public class MultiStateLayout extends FrameLayout {
     public void showError(String text, int imgRes) {
         if (errorView == null) {
             errorView = inflateLayout(errorLayoutId);
-            setupRetryButton(errorView, 0);
+            setupRetryButton(errorView);
             addView(errorView);
         }
         ImageView iv = errorView.findViewById(R.id.ivError);
@@ -126,11 +126,11 @@ public class MultiStateLayout extends FrameLayout {
         return LayoutInflater.from(getContext()).inflate(layoutId, this, false);
     }
 
-    private void setupRetryButton(View view, int from) {
+    private void setupRetryButton(View view) {
         View retryBtn = view.findViewById(R.id.retry);
         if (retryBtn != null) {
             retryBtn.setOnClickListener(v -> {
-                if (retryListener != null) retryListener.onRetry(from);
+                if (retryListener != null) retryListener.onRetry();
             });
         }
     }
@@ -140,6 +140,6 @@ public class MultiStateLayout extends FrameLayout {
     }
 
     public interface OnRetryListener {
-        void onRetry(int from);
+        void onRetry();
     }
 }

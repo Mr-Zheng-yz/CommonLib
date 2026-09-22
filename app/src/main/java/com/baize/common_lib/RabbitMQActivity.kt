@@ -109,9 +109,7 @@ class RabbitMQActivity : AppCompatActivity() {
             }
             RabbitMqManager.State.DISCONNECTED -> {
                 binding.mslLayout.showError("已到达最大重连次数，点击重连")
-                binding.mslLayout.setRetryListener { from ->
-                    mqManager.connect()
-                }
+                binding.mslLayout.setRetryListener { mqManager.connect() }
             }
         }
     }

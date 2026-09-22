@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <attr name="gradientType">
+        <enum name="top_bottom" value="0"/>
+        <enum name="tr_bl" value="1"/>
+        <enum name="right_left" value="2"/>
+        <enum name="br_tl" value="3"/>
+        <enum name="bottom_top" value="4"/>
+        <enum name="bl_tr" value="5"/>
+        <enum name="left_right" value="6"/>
+        <enum name="tl_br" value="7"/>
+    </attr>
+
+    <declare-styleable name="RoundView">
+        <attr name="roundBgColor" format="color"/>
+        <attr name="roundRadius" format="dimension"/>
+        <attr name="topLeftRadius" format="dimension"/>
+        <attr name="topRightRadius" format="dimension"/>
+        <attr name="bottomLeftRadius" format="dimension"/>
+        <attr name="bottomRightRadius" format="dimension"/>
+        <attr name="roundStrokeColor" format="color"/>
+        <attr name="roundStrokeWidth" format="dimension"/>
+        <attr name="gradientType"/>
+        <attr name="endColor" format="reference|color"/>
+        <attr name="startColor" format="reference|color"/>
+        <attr name="enableClickEffect" format="boolean"/>
+    </declare-styleable>
+
+    <attr name="RoundButtonStyle" format="reference"/>
+
+</resources>

@@ -4,4 +4,59 @@
         <attr name="mslEmptyLayout" format="reference" />
         <attr name="mslErrorLayout" format="reference" />
     </declare-styleable>
+
+    <declare-styleable name="RatioFrameLayout">
+        <!-- 宽高比 width : height -->
+        <attr name="ratio_width" format="float"/>
+        <attr name="ratio_height" format="float"/>
+    </declare-styleable>
+
+    <declare-styleable name="DashLineView">
+        <!--虚线颜色-->
+        <attr name="dash_color" format="color"/>
+        <!--虚线线段长度 dp-->
+        <attr name="dash_length" format="dimension"/>
+        <!--虚线间隔 dp-->
+        <attr name="dash_gap" format="dimension"/>
+        <!--线条粗细 dp-->
+        <attr name="line_width" format="dimension"/>
+        <!--是否竖向虚线 true=竖向 false=横向-->
+        <attr name="is_vertical" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="DashRoundRectView">
+        <attr name="drr_cornerRadius" format="dimension"/>
+        <attr name="drr_dashLineLength" format="dimension"/>
+        <attr name="drr_dashGap" format="dimension"/>
+        <attr name="drr_borderColor" format="color"/>
+        <attr name="drr_borderWidth" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="VerticalSawDivider">
+        <attr name="saw_radius" format="dimension" />
+        <attr name="saw_gap" format="dimension" />
+        <attr name="saw_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="TextViewVertical">
+        <attr name="v_text" format="string" />
+        <attr name="v_textSize" format="dimension" />
+        <attr name="v_textColor" format="color" />
+        <attr name="v_start" format="enum">
+            <enum name="left" value="1" />
+            <enum name="right" value="2" />
+        </attr>
+        <attr name="v_line" format="enum">
+            <enum name="none" value="0" />
+            <enum name="left" value="1" />
+            <enum name="right" value="2" />
+        </attr>
+        <attr name="v_lineWidth" format="dimension" />
+        <attr name="v_lineColor" format="color" />
+        <attr name="v_textVerticalMargin" format="dimension" />
+        <attr name="v_textHorizontalMargin" format="dimension" />
+        <attr name="v_cutChars" format="string" />
+        <attr name="v_line2TextMargin" format="dimension" />
+    </declare-styleable>
+
 </resources>
