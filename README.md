@@ -61,7 +61,12 @@ implementation 'com.github.Mr-Zheng-yz.CommonLib:mqtt-lib:Tag'
 - mq-lib / mqtt-lib 内部以 `api` 方式依赖 common-libs，已写入各自 POM，使用者无需再显式声明 common-libs。
 - 若同时显式依赖 common-libs 和 mq-lib / mqtt-lib，Gradle 按坐标去重，版本冲突时取最高版本，不会产生重复类。
 - 排查线上崩溃时需要用 `build/outputs/mapping/release/mapping.txt` 还原堆栈，建议每次发版保存该文件
-- SNAPSHOT 调试：发正式 tag 前，如果想先验证使用效果，可以不升级版本号，直接让使用方依赖最新快照 `master-SNAPSHOT` （JitPack 会按 master 分支最新提交构建），验证通过后再走上面的正式发版流程。如：`com.github.Mr-Zheng-yz.CommonLib:mq-lib:master-SNAPSHOT`
+- SNAPSHOT 调试：版本号改为最新快照 `master-SNAPSHOT` （JitPack 会按 master 分支最新提交构建），验证通过后再走上面的正式发版流程。如：`com.github.Mr-Zheng-yz.CommonLib:mq-lib:master-SNAPSHOT`
+  - 该方式会有24小时的缓存时间，使用方可用以下方式刷新：
+    - 构建时加 --refresh-dependencies 参数，强制重新检查并下载所有动态依赖：`./gradlew build --refresh-dependencies`
+    - 手动删除缓存：`rm -rf ~/.gradle/caches/modules-2/files-2.1/com.github.Mr-Zheng-yz.CommonLib`
+
+- commit hash 依赖：JitPack 支持按提交构建，把 Tag 换成 10 位 commit id，如：`implementation 'com.github.Mr-Zheng-yz.CommonLib:common-libs:8f89dfef124bc0ea2ea5cfbc0994dda7c0e3bb6f'`
 
 ## 发版升级步骤
 
