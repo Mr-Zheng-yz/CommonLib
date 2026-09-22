@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ocamara.common_libs.widget.MultiStateLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mslLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RabbitMQActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/llInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="user"
+                android:text="admin"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="password"
+                android:text="123456"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etService"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="service"
+                android:text="10.10.5.17"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etPort"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="port"
+                android:text="5672"/>
+
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="连接" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llConnected"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvMsg"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/btnDisconnect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="断开" />
+
+            <Button
+                android:id="@+id/btnClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="清空消息" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</com.ocamara.common_libs.widget.MultiStateLayout>

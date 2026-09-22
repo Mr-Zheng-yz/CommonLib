@@ -77,6 +77,10 @@ public abstract class BaseRVAdapter<T, VH extends RecyclerView.ViewHolder> exten
         return list;
     }
 
+    public boolean isInRange(int position) {
+        return position >= 0 && position < list.size();
+    }
+
     public static interface OnRvItemListener<T> {
         void onItemClick(T data, int position);
     }

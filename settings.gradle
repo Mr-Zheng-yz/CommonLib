@@ -14,8 +14,14 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+//        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://www.jitpack.io' }
         google()
         mavenCentral()
+        // 仅兜底已停服的遗留构件（如 com.google.android:flexbox:2.0.1 只存在于 jcenter 存档），
+        // 必须放最后，避免其残缺的元数据截胡正常依赖
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
     }
 }
 
@@ -23,3 +29,4 @@ rootProject.name = "CommonLib"
 include ':app'
 include ':common-libs'
 include ':mqtt-lib'
+include ':mq-lib'

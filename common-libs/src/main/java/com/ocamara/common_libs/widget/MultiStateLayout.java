@@ -6,6 +6,8 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.ocamara.common_libs.R;
 
@@ -44,9 +46,17 @@ public class MultiStateLayout extends FrameLayout {
     }
 
     public void showLoading() {
+        this.showLoading("加载中...");
+    }
+
+    public void showLoading(String text) {
         if (loadingView == null) {
             loadingView = inflateLayout(R.layout.layout_loading);
             addView(loadingView);
+        }
+        TextView tv = loadingView.findViewById(R.id.tvLoading);
+        if (tv != null) {
+            tv.setText(text);
         }
         showView(loadingView);
     }
@@ -56,18 +66,51 @@ public class MultiStateLayout extends FrameLayout {
     }
 
     public void showEmpty() {
+        this.showEmpty("加载中...", R.drawable.not_data);
+    }
+
+    public void showEmpty(String text) {
+        this.showEmpty(text, R.drawable.not_data);
+    }
+
+    public void showEmpty(String text, int imgRes) {
         if (emptyView == null) {
             emptyView = inflateLayout(emptyLayoutId);
+            setupRetryButton(emptyView, 1);
             addView(emptyView);
+        }
+        ImageView iv = emptyView.findViewById(R.id.ivEmpty);
+        if (iv != null) {
+            iv.setImageResource(imgRes);
+        }
+        TextView tv = emptyView.findViewById(R.id.tvEmpty);
+        if (tv != null) {
+            tv.setText(text);
         }
         showView(emptyView);
     }
 
     public void showError() {
+        this.showError("发生错误，请点击重试", R.drawable.vector_ic_error);
+    }
+
+    public void showError(String text) {
+        this.showError(text, R.drawable.vector_ic_error);
+    }
+
+    public void showError(String text, int imgRes) {
         if (errorView == null) {
             errorView = inflateLayout(errorLayoutId);
-            setupRetryButton(errorView);
+            setupRetryButton(errorView, 0);
             addView(errorView);
+        }
+        ImageView iv = errorView.findViewById(R.id.ivError);
+        if (iv != null) {
+            iv.setImageResource(imgRes);
+        }
+        TextView tv = errorView.findViewById(R.id.tvError);
+        if (tv != null) {
+            tv.setText(text);
         }
         showView(errorView);
     }
@@ -83,11 +126,11 @@ public class MultiStateLayout extends FrameLayout {
         return LayoutInflater.from(getContext()).inflate(layoutId, this, false);
     }
 
-    private void setupRetryButton(View errorView) {
-        View retryBtn = errorView.findViewById(R.id.retry);
+    private void setupRetryButton(View view, int from) {
+        View retryBtn = view.findViewById(R.id.retry);
         if (retryBtn != null) {
             retryBtn.setOnClickListener(v -> {
-                if (retryListener != null) retryListener.onRetry();
+                if (retryListener != null) retryListener.onRetry(from);
             });
         }
     }
@@ -97,6 +140,6 @@ public class MultiStateLayout extends FrameLayout {
     }
 
     public interface OnRetryListener {
-        void onRetry();
+        void onRetry(int from);
     }
 }

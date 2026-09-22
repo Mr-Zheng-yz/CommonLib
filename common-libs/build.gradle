@@ -6,10 +6,10 @@ plugins {
 
 android {
     namespace 'com.ocamara.common_libs'
-    compileSdk 34
+    compileSdk libs.versions.compileSdk.get().toInteger()
 
     defaultConfig {
-        minSdk 24
+        minSdk libs.versions.minSdk.get().toInteger()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -30,24 +30,26 @@ android {
     }
 }
 
+// JitPack 多模块标准坐标：com.github.用户名.仓库名:模块名:git tag
+// version 统一取自 gradle.properties 的 RELEASE_VERSION，必须与 git tag 一致
 afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
                 from components.release
-                groupId = 'com.github.Mr-Zheng-yz'
-                artifactId = 'release'
-                version = '1.4'
+                groupId = 'com.github.Mr-Zheng-yz.CommonLib'
+                artifactId = 'common-libs'
+                version = findProperty('RELEASE_VERSION')
             }
         }
     }
 }
 
 dependencies {
-
-//    implementation libs.androidx.core.ktx
-//    implementation libs.androidx.appcompat
-//    implementation libs.material
+    api 'com.google.android:flexbox:2.0.1'
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.material
 //    testImplementation libs.junit
 //    androidTestImplementation libs.androidx.junit
 //    androidTestImplementation libs.androidx.espresso.core
