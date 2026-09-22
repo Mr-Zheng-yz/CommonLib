@@ -18,13 +18,18 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            // 库模块发布前混淆：公开 API 由 proguard-rules.pro 保留，内部实现被混淆
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
+    }
+    // 显式声明发布 release 变体且不附带 sources jar
+    publishing {
+        singleVariant('release')
     }
 }
 
