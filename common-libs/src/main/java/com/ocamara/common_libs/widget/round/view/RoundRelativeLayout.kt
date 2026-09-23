@@ -3,7 +3,6 @@ package com.ocamara.common_libs.widget.round.view
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.RelativeLayout
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.ocamara.common_libs.widget.round.RoundViewSupport
 import com.ocamara.common_libs.widget.round.RoundViewSupportDelegate
 

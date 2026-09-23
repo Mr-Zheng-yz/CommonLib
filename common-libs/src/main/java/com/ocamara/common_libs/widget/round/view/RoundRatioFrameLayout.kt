@@ -2,7 +2,7 @@ package com.ocamara.common_libs.widget.round.view
 
 import android.content.Context
 import android.util.AttributeSet
-import androidx.recyclerview.widget.RecyclerView
+import com.ocamara.common_libs.widget.RatioFrameLayout
 import com.ocamara.common_libs.widget.round.RoundViewSupport
 import com.ocamara.common_libs.widget.round.RoundViewSupportDelegate
 
@@ -11,9 +11,9 @@ import com.ocamara.common_libs.widget.round.RoundViewSupportDelegate
  *
  * 圆角背景能力由 [com.ocamara.common_libs.widget.round.RoundViewSupport] 委托实现，自定义 API 无需在此逐个转发。
  */
-class RoundRecyclerView @JvmOverloads constructor(
+class RoundRatioFrameLayout @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : RecyclerView(context, attrs, defStyleAttr),
+) : RatioFrameLayout(context, attrs, defStyleAttr),
   RoundViewSupport by RoundViewSupportDelegate(context, attrs, defStyleAttr) {
 
   init {
