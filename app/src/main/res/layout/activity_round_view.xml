@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".RoundViewActivity">
+
+    <com.ocamara.common_libs.widget.round.view.RoundConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:roundBgColor="@color/blue"
+        app:roundRadius="16dp">
+
+        <com.ocamara.common_libs.widget.round.view.RoundEditText
+            android:id="@+id/tvEdit"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:padding="8dp"
+            android:text="哈哈"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:roundBgColor="@color/white"
+            app:roundRadius="12dp" />
+
+        <com.ocamara.common_libs.widget.round.view.RoundLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="vertical"
+            android:padding="8dp"
+            app:endColor="@color/teal_700"
+            app:gradientType="top_bottom"
+            app:layout_constraintTop_toBottomOf="@+id/tvEdit"
+            app:roundRadius="18dp"
+            app:startColor="@color/purple_200">
+
+            <com.ocamara.common_libs.widget.round.view.RoundTextView
+                android:id="@+id/tvText"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="你好"
+                app:enableClickEffect="true"
+                app:roundBgColor="@color/blue"
+                app:roundRadius="10dp" />
+
+            <com.ocamara.common_libs.widget.round.view.RoundTextView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:text="哈"
+                android:textColor="@color/white"
+                app:roundRadius="12dp"
+                app:roundStrokeColor="@color/black"
+                app:roundStrokeWidth="1dp" />
+
+            <com.ocamara.common_libs.widget.round.view.RoundView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:text="哈"
+                android:textColor="@color/white"
+                app:bottomLeftRadius="2dp"
+                app:bottomRightRadius="20dp"
+                app:roundBgColor="@color/blue"
+                app:topLeftRadius="12dp"
+                app:topRightRadius="2dp" />
+
+            <com.ocamara.common_libs.widget.round.view.RoundImageView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:layout_margin="8dp"
+                android:src="@drawable/not_data"
+                app:roundBgColor="@color/blue"
+                app:roundRadius="12dp"/>
+
+
+
+        </com.ocamara.common_libs.widget.round.view.RoundLinearLayout>
+
+    </com.ocamara.common_libs.widget.round.view.RoundConstraintLayout>
+
+</LinearLayout>

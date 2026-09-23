@@ -19,4 +19,10 @@
         android:layout_height="wrap_content"
         android:text="Loading弹窗" />
 
+    <Button
+        android:id="@+id/btnRoundView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Round View" />
+
 </com.google.android.flexbox.FlexboxLayout>

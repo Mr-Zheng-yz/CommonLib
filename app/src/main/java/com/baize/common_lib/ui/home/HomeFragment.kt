@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.baize.common_lib.RabbitMQActivity
+import com.baize.common_lib.RoundViewActivity
 import com.baize.common_lib.databinding.FragmentHomeBinding
 import com.ocamara.common_libs.dialog.LoadingDialogFragment
 
@@ -39,10 +40,8 @@ class HomeFragment : Fragment() {
 
     private fun initView() {
         binding.btnRabbitMQ.setOnClickListener { startActivity(Intent(context, RabbitMQActivity::class.java)) }
-        binding.btnLoading.setOnClickListener {
-            LoadingDialogFragment.showLoading(childFragmentManager, "测试中...")
-            LoadingDialogFragment.hideLoading(childFragmentManager)
-        }
+        binding.btnLoading.setOnClickListener { LoadingDialogFragment.showLoading(childFragmentManager, "测试中...") }
+        binding.btnRoundView.setOnClickListener { startActivity(Intent(context, RoundViewActivity::class.java)) }
     }
 
     override fun onDestroyView() {

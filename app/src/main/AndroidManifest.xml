@@ -14,6 +14,9 @@
         android:theme="@style/Theme.CommonLib"
         tools:targetApi="31">
         <activity
+            android:name=".RoundViewActivity"
+            android:exported="false" />
+        <activity
             android:name=".RabbitMQActivity"
             android:exported="false" />
         <activity
