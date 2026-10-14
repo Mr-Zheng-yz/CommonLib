@@ -296,6 +296,7 @@ public final class RabbitMqManager {
             closeQuietly(connection, channel);
             setState(State.CLOSED, "manual disconnect");
         });
+        this.messageListener = null;
     }
 
     /** 发布消息（异步，fire-and-forget）。MQ 未就绪或 exchange 不存在时丢弃并打印警告 */
