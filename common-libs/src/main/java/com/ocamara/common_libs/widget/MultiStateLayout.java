@@ -66,7 +66,7 @@ public class MultiStateLayout extends FrameLayout {
     }
 
     public void showEmpty() {
-        this.showEmpty("加载中...", R.drawable.not_data);
+        this.showEmpty("暂无数据", R.drawable.not_data);
     }
 
     public void showEmpty(String text) {
